@@ -35,9 +35,9 @@
           <template #title>Wrong Questions</template>
         </el-menu-item>
 
-        <el-menu-item index="Page2" @click="toPage('/page2')">
+        <el-menu-item index="aboutPage" @click="toPage('/aboutPage')">
           <el-icon><setting /></el-icon>
-          <template #title >Page 2</template>
+          <template #title >About</template>
         </el-menu-item>
         
 
@@ -77,8 +77,8 @@ export default {
     },
     methods: {
         toPage(page){
-      console.log(page);
-           console.log("********");
+      // console.log(page);
+  
       
       this.$router.push(page);     
     },

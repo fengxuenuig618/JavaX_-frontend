@@ -20,7 +20,7 @@
         <el-progress
           :text-inside="true"
           :stroke-width="24"
-          :percentage="parseInt((completedQuestions / allQuestions) * 100)"
+          :percentage="allQuestions==0?0:parseInt((completedQuestions / allQuestions) * 100)"
           status="success"
         />
       </el-col>
@@ -28,7 +28,7 @@
       <el-col :span="2" style="text-align: center">
         <el-progress
           type="circle"
-          :percentage="parseInt((correctQuestions / completedQuestions) * 100)"
+          :percentage="completedQuestions==0?0:parseInt((correctQuestions / completedQuestions) * 100)"
           :width="60"
         />
       </el-col>
@@ -41,7 +41,7 @@
       <el-col :span="6" style="font-size: 18px">
         <div style="display: inline">Difficulty:</div>
         <el-rate
-          v-model="quizs[currentIndex].globalLevel"
+          :model-value="parseInt(quizs[currentIndex].globalLevel)"
           disabled
           :max="3"
           size="large"
@@ -105,12 +105,15 @@
     <el-drawer
       v-model="drawer"
       title="I am the title"
+      :close-on-press-escape="false"
+      :close-on-click-modal="false"
       :with-header="false"
       direction="btt"
       size="60%"
     >
       <el-row>
-        <el-col :span="20" style="font-size: 30px">
+        <el-col :span="5"></el-col>
+        <el-col :span="15" style="font-size: 30px">
           Congratulations!!!&nbsp;&nbsp;You have completed the quiz in this
           Chapter.
         </el-col>
@@ -121,17 +124,34 @@
         </el-col>
       </el-row>
       <el-scrollbar>
-        <div style="font-size: 22px; padding-top: 15px">
+        <el-row>
+          <el-col :span="8"></el-col>
+          <el-col :span="8">
+            <div style="font-size: 22px; padding-top: 15px">
           Chapter correct rate:&nbsp;{{ correctQuestions }}/{{ allQuestions }}
         </div>
         <el-progress
           :text-inside="true"
           :stroke-width="24"
-          :percentage="parseInt((correctQuestions / allQuestions) * 100)"
+          :percentage="allQuestions==0?0:parseInt((correctQuestions / allQuestions) * 100)"
           status="success"
           style="width: 500px; padding-bottom: 15px"
         />
-        <div
+          </el-col>
+          <el-col :span="8" style="text-align: right; margin-top: 32px">
+            <el-button
+              type="success"
+              plain
+              round
+              @click="confirmQuiz()"
+              >Confirm</el-button
+            >
+          </el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="8"></el-col>
+          <el-col :span="8">
+ <div
           v-for="paragraph in paragraphAll"
           v-bind:key="paragraph"
           style="font-size: 15px"
@@ -146,6 +166,7 @@
             :text-inside="true"
             :stroke-width="24"
             :percentage="
+            paragraphAll.get(paragraph[0])==0?0:
               parseInt(
                 (paragraphCorrect.get(paragraph[0]) /
                   paragraphAll.get(paragraph[0])) *
@@ -156,6 +177,11 @@
             style="width: 500px; padding-bottom: 15px"
           />
         </div>
+          </el-col>
+          <el-col :span="8"></el-col>
+        </el-row>
+        
+       
 
                 <el-dialog
           v-model="resetDialogVisible"
@@ -182,7 +208,8 @@
 
 <script >
 import { ref } from "vue";
-import { ElMessage,ElMessageBox } from "element-plus";
+import { ElMessage} from "element-plus";
+import bus from 'vue3-eventbus'
 export default {
   name: "MyCourseQuiz",
   props: ['chapterId','globalLevel'],
@@ -279,19 +306,20 @@ export default {
           "The correct answer is : " + this.quizs[this.currentIndex].answer;
       }
     },
+    confirmQuiz(){
+        this.saveRecords();
+         ElMessage({
+            showClose: true,
+            message: "save success",
+            type: "success",
+          });
+          this.drawer = false;
+          
+    },
     nextQuestion() {
       if (this.currentIndex == this.allQuestions - 1) {
-        this.saveRecords();
-        ElMessageBox.alert('Your test records will be automatically saved to the database.', 'INFO', {
-    confirmButtonText: 'OK',
-  }).then(() => {
-      this.drawer = true;
-      ElMessage({
-              showClose: true,
-              message: "save success",
-              type: "success",
-            });
-    })
+        this.drawer = true;
+        
       } else {
         this.currentIndex++;
         this.hasSelected = false;
@@ -304,13 +332,14 @@ export default {
       url += localStorage.getItem("userid");
       url += ":";
       url += this.currentChapter;
-      console.log("url:"+url);
+      
       this.transferQuiz.uid=localStorage.getItem("userid");
       this.transferQuiz.correctQuiz=this.questionSetCorrect;
       this.transferQuiz.wrongQuiz=this.questionSetWrong;
       _this.$axios.post(url,this.$qs.stringify(this.transferQuiz)).then((res) => {
         console.log(res);    
       });
+      bus.emit('afterDone', { isDone: true });
     },
     reset(){
 this.currentIndex=0;

@@ -88,4 +88,11 @@ watch: {
   height: 100%;
   background-color: white;
 }
+.custom-tabs-label .el-icon {
+  vertical-align: middle;
+}
+.custom-tabs-label span {
+  vertical-align: middle;
+  margin-left: 4px;
+}
 </style>

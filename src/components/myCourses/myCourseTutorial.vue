@@ -1,82 +1,80 @@
 
 <template>
-<div class="my-course-tutorial">
-    <el-tabs tab-position=right class="my-course-tutorial-tab"
-    >
-    <el-tab-pane 
-    v-for="tutorial in tutorials" v-bind:key="tutorial"
-    :label="tutorial.tutorialTitle">
-    {{tutorial.tutorialContent}}
-    </el-tab-pane>
-
-  </el-tabs>
-</div>
+  <div class="my-course-tutorial">
+    <el-tabs tab-position="top" class="my-course-tutorial-tab">
+      <el-tab-pane
+        v-for="tutorial in tutorials"
+        v-bind:key="tutorial"
+        :label="tutorial.tutorialTitle"
+      >
+        <!-- {{ tutorial.tutorialContent }} -->
+        <div v-html="tutorial.tutorialContent"></div>
+      </el-tab-pane>
+    </el-tabs>
+    
+  </div>
 </template>
 
 
 <script >
+
 export default {
   name: "MyCourseTutorial",
-  props: ['chapterId','globalLevel'],
+  props: ["chapterId", "globalLevel"],
   data() {
-        return {
-            currentChapter:"",
-            tutorials:[],    
-        }
-    },
-    components:{
-        
-
-    },
-    methods: {
-        getChapterTutorial(){
-        var _this = this;
+    return {
+      currentChapter: "",
+      tutorials: [],
+      testHtml:"<h1>Hello11 World</h1>"
+    };
+  },
+  components: {},
+  methods: {
+    async getChapterTutorial() {
+      var _this = this;
       var url = "/apis/getMyModulesTutorial/";
+      url += localStorage.getItem("userid");
+      url += ":";
       url += this.chapterId;
       url += ":";
       url += this.globalLevel;
-      _this.$axios.get(url).then((res) => {
-        //console.log(res.data.data);
-        _this.tutorials = res.data.data;
 
-      });
-        },
-        init(){
-            
-            this.getChapterTutorial();
-        },
-        
+      let response = await _this.$axios.get(url);
+      this.tutorials = response.data.data;
+      console.log(this.tutorials)
     },
-    created(){
-        this.getChapterTutorial();
+    async init() {
+      await this.getChapterTutorial();
     },
-    mounted(){
-      
+  },
+  created() {
+    this.init();
+  },
+  mounted() {
+    this.init();
+  },
+  watch: {
+    chapterId() {
+      this.currentChapter = this.chapterId;
+
+      this.init();
     },
-       watch: {
-        chapterId(){
-            this.currentChapter = this.chapterId;
-            console.log("watch",this.currentChapter);
-            this.init();
-        },
-	  '$route' (to, from) { //监听路由是否变化
-		  if(to.query.chapterId != from.query.chapterId){
-			  //window.location.reload();
+    $route(to, from) {
+      //监听路由是否变化
+      if (to != from) {
+        //window.location.reload();
         this.init();
-		  }
-	  }
-},
-    
-  
+      }
+    },
+  },
 };
 </script>
 
 <style scoped>
-.my-course-tutorial{
-    height: 100%;
+.my-course-tutorial {
+  height: 100%;
 }
-.my-course-tutorial-tab{
-    height: 100%;
+.my-course-tutorial-tab {
+  height: 100%;
 }
-
 </style>

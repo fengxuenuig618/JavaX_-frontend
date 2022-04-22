@@ -72,7 +72,9 @@ export default {
     },
   },
 
-  mounted() {},
+  mounted() {
+    this.$bus.emit('headerNavigate', { navigation: "My Profile" });
+  },
   created() {
     //获取账号信息
     this.init();

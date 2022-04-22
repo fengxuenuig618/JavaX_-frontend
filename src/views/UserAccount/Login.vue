@@ -1,7 +1,7 @@
 <template>
   <div class="backGround">
     <el-container>
-      <el-header class="header">Header</el-header>
+      <!-- <el-header class="header">Header</el-header> -->
       <el-main>
         <div class="login">
           <el-form
@@ -12,13 +12,13 @@
             label-width="0px"
             class="demo-ruleForm login-container"
           >
-            <h2 class="title" style="padding-left: 22px">系统登录</h2>
+            <h2 class="title" style="padding-left: 22px">LOGIN</h2>
             <el-form-item prop="account">
               <el-input
                 type="text"
                 v-model="loginForm.account"
                 auto-complete="off"
-                placeholder="账号"
+                placeholder="Username or Email"
               ></el-input>
             </el-form-item>
             <el-form-item prop="password">
@@ -26,7 +26,7 @@
                 type="password"
                 v-model="loginForm.password"
                 auto-complete="off"
-                placeholder="密码"
+                placeholder="Password"
               ></el-input>
             </el-form-item>
 
@@ -36,7 +36,7 @@
                   <el-form-item prop="picLyanzhengma">
                     <el-input
                       type="text"
-                      placeholder="请输入验证码"
+                      placeholder="Verification code"
                       class="yanzhengma_input"
                       v-model="loginForm.picLyanzhengma"
                     />
@@ -64,17 +64,17 @@
                 type="success"
                 style="width: 48%"
                 @click="onSubmit('loginForm')"
-                >登 录</el-button
+                >Sign In</el-button
               >
               <el-button type="primary" style="width: 48%" @click="register()"
-                >注册</el-button
+                >Sign Up</el-button
               >
-              <el-link type="primary">忘记密码？点击找回</el-link>
+              <el-link type="primary" @click="forgotPassword()">Forgot Password?</el-link>
             </el-form-item>
           </el-form>
         </div>
       </el-main>
-      <el-footer class="footer">Footer</el-footer>
+      <!-- <el-footer class="footer">Footer</el-footer> -->
     </el-container>
   </div>
 </template>
@@ -121,14 +121,14 @@ export default {
         picLyanzhengma: "",
       },
       fieldRules: {
-        account: [{ required: true, message: "请输入账号", trigger: "blur" }],
+        account: [{ required: true, message: "Required", trigger: "blur" }],
         password: [
-          { required: true, message: "请输入密码", trigger: "blur" },
-          { validator: validatePassword, message: "密码过短", trigger: "blur" },
+          { required: true, message: "Required", trigger: "blur" },
+          { validator: validatePassword, message: "Too short", trigger: "blur" },
         ],
         picLyanzhengma: [
-          { required: true, message: "请输入验证码", trigger: "blur" },
-          { validator: validateCaptcha, message: "验证码错误", trigger: "blur" },
+          { required: true, message: "Required", trigger: "blur" },
+          { validator: validateCaptcha, message: "verification code wrong", trigger: "blur" },
         ],
       },
       checked: false,
@@ -143,17 +143,16 @@ export default {
           this.login();
         } else {
           // 验证不通过
-          console.log("error submit!!");
           ElMessage({
                 showClose: true,
-                message: "信息错误，请检查",
+                message: "Wrong Information",
                 type: "error",
               });
           this.createdCode();
           return false;
         }
       });
-      console.log(this.staffNation);
+      // console.log(this.staffNation);
     },
     login() {
       this.loading = true;
@@ -166,17 +165,20 @@ export default {
           console.log(res);
 
           if (res.data.code == 200) {
-            console.log(res.data.data.token);
+            // console.log(res.data.data.token);
             //_this.userToken = "Bearer " + res.data.data.token;
             _this.userToken =res.data.data.token;
             // 将用户token保存到vuex中
             _this.changeLogin({ Authorization: _this.userToken });
 
-            console.log(_this.userToken);
+            // console.log(_this.userToken);
             Cookies.set("Token", res.data.data.token); //登录成功后将token存储在cookie之中
-            localStorage.setItem("username",this.user.uname);
-            localStorage.setItem("userid",parseInt(res.data.msg));
+
+            let arr = res.data.msg.split(';');
             console.log(res.data.msg);
+            localStorage.setItem("username",arr[1]);
+            localStorage.setItem("userid",parseInt(arr[0]));
+            // console.log(res.data.msg);
             _this.$router.push("/");
             ElMessage({
                 showClose: true,
@@ -187,7 +189,7 @@ export default {
             if (res.data.msg == "no such user") {
               ElMessage({
                 showClose: true,
-                message: "no such user, please try again",
+                message: "User does not exist, please try again",
                 type: "error",
               });
               this.createdCode();
@@ -205,7 +207,9 @@ export default {
     reset() {
       this.$refs.loginForm.resetFields();
     },
-
+    forgotPassword(){
+      this.$router.push("/forgotPassword");
+    },
     register() {
       this.$router.push("/register");
     },
@@ -276,7 +280,7 @@ export default {
 <style lang="scss" scoped>
 .backGround {
   height: 100vh;
-  background: url("~@/assets/login_images/loginBackground.jpeg") center center
+  background: url("~@/assets/login_images/background1.jpg") center center
     fixed no-repeat;
   background-size: cover;
 }

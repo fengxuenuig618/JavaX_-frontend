@@ -11,6 +11,19 @@ html,body,#app{
   overflow-x:hidden;
    overflow-y:hidden;
 }
+.el-drawer__body {
+    background: #ffffe5;
+}
+.el-menu--collapse .el-submenu__title span{
+    height: 0;
+    width: 0;
+    overflow: hidden;
+    visibility: hidden;
+    display: inline-block;
+  }
+  .el-menu--collapse .el-submenu__icon-arrow{
+    display: none;
+  }
 
 // #app {
 //   font-family: Avenir, Helvetica, Arial, sans-serif;

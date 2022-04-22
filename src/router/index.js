@@ -14,6 +14,16 @@ const routes = [
     component: () => import("../views/UserAccount/Register.vue"),
   },
   {
+    path: "/forgotPassword",
+    name: "ForgotPassword",
+    component: () => import("../views/UserAccount/ForgotPassword.vue"),
+  },
+  {
+    path: "/resetPassword",
+    name: "ResetPassword",
+    component: () => import("../views/UserAccount/ResetPassword.vue"),
+  },
+  {
     path: "/index",
     name: "Index",
     component: () => import("../views/index/index.vue"),
@@ -25,7 +35,7 @@ const routes = [
     component: () => import("../layouts/index.vue"),
     redirect:"/myProfile",
     children: [{ path: 'page1', name: 'Page1', component: () => import("../components/Page1.vue") },
-    { path: 'page2', name: 'Page2', component: () => import("../components/Page2.vue") },
+    { path: 'aboutPage', name: 'AboutPage', component: () => import("../views/AboutPage.vue") },
     { path: 'myProfile', name: 'MyProfile', component: () => import("../components/profile/MyProfile.vue") },
     { path: 'editProfile', name: 'EditProfile', component: () => import("../components/profile/EditProfile.vue") },
     { path: 'accountManage', name: 'accountManage', component: () => import("../components/AccountManage.vue") },
@@ -49,13 +59,14 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
 
-  if (to.path == '/login' || to.path == '/register') {
+  if (to.path == '/login' || to.path == '/register' 
+  || to.path == '/forgotPassword' || to.path == '/resetPassword') {
     next();
   } else {
     const token = localStorage.getItem('Authorization'); // 获取token
     // token不存在
     if (token === null || token === '') {
-      alert('您还没有登录，请先登录');
+      alert('Log in first, please');
       next('/login');
     } else {
       next();

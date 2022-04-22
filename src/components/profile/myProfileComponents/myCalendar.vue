@@ -68,9 +68,9 @@ export default {
         localStorage.setItem("lastDate", nowDate);
         var url = "/apis/postUserNewDate/";
       url += localStorage.getItem("userid");
-      console.log("url:" + url);
+      // console.log("url:" + url);
       this.transferNewDate.newDate=nowDate;
-      console.log(this.transferNewDate);
+      // console.log(this.transferNewDate);
        this.$axios.post(url,this.$qs.stringify(this.transferNewDate));
       }
     },
@@ -79,7 +79,7 @@ export default {
       var _this = this;
       var url = "/apis/getUserDate/";
       url += localStorage.getItem("userid");
-      console.log("url:" + url);
+      // console.log("url:" + url);
       let response = await _this.$axios.get(url);
       this.DateList=response.data.data.historyDate;
     },

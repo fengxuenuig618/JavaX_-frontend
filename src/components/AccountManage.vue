@@ -58,7 +58,7 @@
           type="text"
           v-model="accountForm.email"
           auto-complete="off"
-          placeholder="Please input your email"
+          placeholder="Email"
         ></el-input>
       </el-form-item>
 
@@ -66,7 +66,7 @@
         <el-col :span="12">
           <el-input
             type="text"
-            placeholder="请输入验证码"
+            placeholder="Verification code"
             class="yanzhengma_input"
             v-model="accountForm.captcha"
           ></el-input>
@@ -161,32 +161,32 @@ export default {
         email: "",
       },
       fieldRules: {
-        account: [{ required: true, message: "请输入账号", trigger: "blur" }],
+        account: [{ required: true, message: "Required", trigger: "blur" }],
         oldPassword: [
-          { required: true, message: "请输入旧密码", trigger: "blur" },
+          { required: true, message: "Required", trigger: "blur" },
         ],
         password: [
-          { required: true, message: "请输入新密码", trigger: "blur" },
-          { validator: validatePassword, message: "密码过短", trigger: "blur" },
+          { required: true, message: "Required", trigger: "blur" },
+          { validator: validatePassword, message: "Too short", trigger: "blur" },
         ],
         checkPassword: [
-          { required: true, message: "请再次输入新密码", trigger: "blur" },
-          { validator: validatePassword, message: "密码过短", trigger: "blur" },
-          { validator: checkPassword, message: "密码不一致", trigger: "blur" },
+          { required: true, message: "Required", trigger: "blur" },
+          { validator: validatePassword, message: "Too short", trigger: "blur" },
+          { validator: checkPassword, message: "Password does not match", trigger: "blur" },
         ],
         captcha: [
-          { required: true, message: "请输入验证码", trigger: "blur" },
+          { required: true, message: "Required", trigger: "blur" },
           {
             validator: validateCaptcha,
-            message: "验证码错误",
+            message: "Verification code wrong",
             trigger: "blur",
           },
         ],
         email: [
-          { required: true, message: "请邮箱地址", trigger: "blur" },
+          { required: true, message: "Required", trigger: "blur" },
           {
             validator: validateEmail,
-            message: "请输入正确邮箱地址",
+            message: "Email is invalid",
             trigger: "blur",
           },
         ],
@@ -204,22 +204,22 @@ export default {
           
         } else {
           // 验证不通过
-          console.log("error submit!!");
+          // console.log("error submit!!");
           ElMessage({
             showClose: true,
-            message: "信息错误，请检查",
+            message: "Wrong Information",
             type: "error",
           });
           this.createdCode();
           return false;
         }
       });
-      console.log(this.staffNation);
+      // console.log(this.staffNation);
     },
     updateAccount() {
       this.loading = true;
       let _this = this;
-      console.log(this.accountForm);
+      // console.log(this.accountForm);
       this.userAccountUpdate.uname = this.accountForm.account;
       this.userAccountUpdate.newUpw = this.accountForm.password;
       this.userAccountUpdate.oldUpw = this.accountForm.oldPassword;
@@ -228,7 +228,7 @@ export default {
       this.$axios
         .post("/apis/updateUserAccount", this.$qs.stringify(this.userAccountUpdate))
         .then((res) => {
-          console.log(res);
+          // console.log(res);
 
           if (res.data.code == 200) {
             ElMessage({
@@ -242,6 +242,13 @@ export default {
               ElMessage({
                 showClose: true,
                 message: "Username duplicate, please use another one",
+                type: "error",
+              });
+            }
+            else if (res.data.msg == "duplicate email") {
+              ElMessage({
+                showClose: true,
+                message: "This email has been registered",
                 type: "error",
               });
             }
@@ -269,7 +276,7 @@ export default {
         url += localStorage.getItem("username");
         _this.$axios.get(url)
        .then(res => {   
-         console.log(res.data.data);
+        //  console.log(res.data.data);
          _this.accountForm.account = res.data.data.uname;
          _this.accountForm.email = res.data.data.uemail;
          _this.accountForm.uid = res.data.data.uid;
@@ -338,6 +345,7 @@ export default {
 
     //创建验证码
     this.createdCode();
+    this.$bus.emit('headerNavigate', { navigation: "My Account" });
     
   },
   created(){

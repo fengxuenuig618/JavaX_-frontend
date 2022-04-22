@@ -1,15 +1,16 @@
 <template>
-<div class="menu-bug-wrap">
+
 <el-sub-menu index="allModules">
           <template #title>
-            <el-icon><location/></el-icon>
+            <el-icon><collection /></el-icon>
+            <!-- <el-icon><location/></el-icon> -->
             <span> All Modules</span>
           </template>
                <template v-for="module in transferMenuALlModules" v-bind:key="module">
               <el-sub-menu :index="'allMoudles'+module.moduleId" >
             <template #title><span>{{module.moduleTitle}}</span></template>
             <template v-for="chapter in module.chapters" v-bind:key="chapter">
-            <el-menu-item :index="'allMoudles'+chapter.chapterId" @click="toChapter(chapter.chapterId)">
+            <el-menu-item :index="'allMoudles'+chapter.chapterId" @click="toChapter(chapter.chapterId, module.moduleTitle,chapter.chapterTitle)">
             {{chapter.chapterTitle}}
             </el-menu-item>
             </template>
@@ -17,33 +18,36 @@
           
           </template> 
         </el-sub-menu>
-</div>
+
 </template>
 
 
 <script >
-import {Location,} from "@element-plus/icons-vue";
-
+import {Collection} from "@element-plus/icons-vue";
+//import { Fragment } from 'vue-fragment';
 
 export default {
   name: "MenuAllCourses",
+ 
   
   data() {
         return {
             transferMenuALlModules:[
                 {moduleId:"",
                 moduleTitle:"",
+                moduleDone:"",
                 chapters:[{
                     chapterId:"",
-                    chapterTitle:""
+                    chapterTitle:"",
+                    chapterDone:"",
                 }]
                 }            
             ],
         }
     },
     components:{
-        Location,
-        
+        Collection
+      
     },
     methods: {
             getMenuAllModules(){
@@ -52,15 +56,21 @@ export default {
       _this.$axios.get(url).then((res) => {
         //console.log(res.data.data);
         _this.transferMenuALlModules=res.data.data;
-        console.log(this.transferMenuALlModules);
+        // console.log(this.transferMenuALlModules);
       });
  
     },
-     toChapter(chapter){
-      console.log(chapter);
-      console.log("********");
+     toChapter(chapter,moduleTitle,chapterTitle){
+      // console.log(chapter);
+     var nav = "All Modules";
+     nav += "/";
+     nav += moduleTitle;
+     nav += "/";
+     nav += chapterTitle;
       //this.router.push({path:'/allCourses', query:{chapterId:chapter }})
-      this.$router.push({ path: '/allCourses', query: { chapterId: chapter, tab:'tutorialTab'} });     
+      this.$router.push({ path: '/allCourses', query: { chapterId: chapter, tab:'tutorialTab',navigation: nav} }); 
+      
+      
     },
     },
     created(){
@@ -75,16 +85,7 @@ export default {
 </script>
 
 <style>
-.el-menu--collapse .el-submenu__title span{
-    height: 0;
-    width: 0;
-    overflow: hidden;
-    visibility: hidden;
-    display: inline-block;
-  }
-  .el-menu--collapse>.menu-bug-wrap>.el-submenu__title.el-submenu__icon-arrow{
-    display: none;
-  }
+
 
 
 </style>

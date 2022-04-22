@@ -55,7 +55,7 @@ export default {
         this.init();
     },
     mounted(){
-
+      this.$bus.emit('headerNavigate', { navigation: "Wrong Questions" });
 
     },
 

@@ -20,7 +20,7 @@
         <el-progress
           :text-inside="true"
           :stroke-width="24"
-          :percentage="parseInt((completedQuestions / allQuestions) * 100)"
+          :percentage="completedQuestions==0? 0:parseInt((completedQuestions / allQuestions) * 100)"
           status="success"
         />
       </el-col>
@@ -28,7 +28,7 @@
       <el-col :span="2" style="text-align: center">
         <el-progress
           type="circle"
-          :percentage="parseInt((correctQuestions / completedQuestions) * 100)"
+          :percentage="correctQuestions==0? 0:parseInt((correctQuestions / completedQuestions) * 100)"
           :width="60"
         />
       </el-col>
@@ -39,9 +39,9 @@
         Question ID:&nbsp;{{ quizs[currentIndex].mcqId }}
       </el-col>
       <el-col :span="6" style="font-size: 18px">
-        <div style="display: inline">Difficulty:</div>
+        <div style="display: inline">Difficulty:&nbsp;</div>
         <el-rate
-          v-model="quizs[currentIndex].globalLevel"
+          :model-value="parseInt(quizs[currentIndex].globalLevel)"
           disabled
           :max="3"
           size="large"
@@ -105,12 +105,15 @@
     <el-drawer
       v-model="drawer"
       title="I am the title"
+      :close-on-press-escape="false"
+      :close-on-click-modal="true"
       :with-header="false"
       direction="btt"
       size="60%"
     >
       <el-row>
-        <el-col :span="20" style="font-size: 30px">
+        <el-col :span="5"></el-col>
+        <el-col :span="15" style="font-size: 30px">
           Congratulations!!!&nbsp;&nbsp;You have completed the quiz in this
           Chapter.
         </el-col>
@@ -128,17 +131,26 @@
         </el-col>
       </el-row>
       <el-scrollbar>
-        <div style="font-size: 22px; padding-top: 15px">
+        <el-row>
+          <el-col :span="8"></el-col>
+          <el-col :span="8">
+            <div style="font-size: 22px; padding-top: 15px">
           Chapter correct rate:&nbsp;{{ correctQuestions }}/{{ allQuestions }}
         </div>
         <el-progress
           :text-inside="true"
           :stroke-width="24"
-          :percentage="parseInt((correctQuestions / allQuestions) * 100)"
+          :percentage="correctQuestions==0? 0:parseInt((correctQuestions / allQuestions) * 100)"
           status="success"
           style="width: 500px; padding-bottom: 15px"
         />
-        <div
+          </el-col>
+          <el-col :span="8"></el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="8"></el-col>
+          <el-col :span="8">
+            <div
           v-for="paragraph in paragraphAll"
           v-bind:key="paragraph"
           style="font-size: 15px"
@@ -153,7 +165,7 @@
             :text-inside="true"
             :stroke-width="24"
             :percentage="
-              parseInt(
+              paragraphCorrect.get(paragraph[0])==0? 0:parseInt(
                 (paragraphCorrect.get(paragraph[0]) /
                   paragraphAll.get(paragraph[0])) *
                   100
@@ -163,6 +175,11 @@
             style="width: 500px; padding-bottom: 15px"
           />
         </div>
+          </el-col>
+          <el-col :span="8"></el-col>
+        </el-row>
+        
+        
         <!-- <el-dialog
           v-model="saveDialogVisible"
           title="Warning"
@@ -206,7 +223,7 @@
 
 <script >
 import { ref } from "vue";
-import { ElMessage,ElMessageBox } from "element-plus";
+import { ElMessage } from "element-plus";
 export default {
   name: "AllCourseQuiz",
   props: ['chapterId'],
@@ -309,9 +326,7 @@ export default {
     nextQuestion() {
       if (this.currentIndex == this.allQuestions - 1) {
         this.drawer = true;
-        ElMessageBox.alert('Your quiz records will now be save.\r To save your record, please complete the quiz in your custom module.', 'INFO', {
-    confirmButtonText: 'OK',
-  })
+        
       } else {
         this.currentIndex++;
         this.hasSelected = false;

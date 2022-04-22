@@ -19,7 +19,7 @@
     <el-row><el-col :span="24">&nbsp;</el-col></el-row>
 
     <el-row>
-      <el-col :span="17">
+      <el-col :span="16">
         <div
           v-for="assessment in this.profileData.overallAssessment"
           :key="assessment"
@@ -29,7 +29,7 @@
         <br><br>
         <div class="line-chart" :id="'lineChart'"></div>
       </el-col>
-      <el-col :span="7">
+      <el-col :span="8">
         <div class="rate-chart" :id="'rateChart'"></div>
       </el-col>
     </el-row>
@@ -64,17 +64,17 @@ export default {
     },
   getRateEchart() {
       var domId = "rateChart";
-      console.log("id=" + domId);
+      // console.log("id=" + domId);
       // 基于准备好的dom，初始化echarts实例
       var myChart = this.$echarts.init(document.getElementById(domId));
       // 绘制图表
       myChart.setOption({
         color:['green','red','grey'],
         title: {
-          text:(this.profileData.overallRight /
+          text:parseInt( (this.profileData.overallRight /
               (this.profileData.overallWrong +
                 this.profileData.overallRight)) *
-              100 +
+              100 )+
             "%",
           left: "center",
           top: "center",
@@ -105,7 +105,7 @@ export default {
       });
     },
     getLineEchart(){
-       console.log(this.profileData);
+        //console.log(this.profileData);
       var len = this.profileData.doneModules.length;
       for(var i=0;i<len;i++){
         this.moduleTitles.push(this.profileData.doneModules[i].moduleTitle);
@@ -116,7 +116,7 @@ export default {
 
 
       var domId = "lineChart";
-      console.log("id=" + domId);
+      // console.log("id=" + domId);
       // 基于准备好的dom，初始化echarts实例
       var myChart = this.$echarts.init(document.getElementById(domId));
       myChart.setOption(
@@ -192,15 +192,20 @@ export default {
     },
     mounted(){
       
+      
     },
 watch: {
     profileData: {
       handler(newVal, oldVal) {
+    
+  
         console.log(oldVal);
-        if (newVal) {
+  
+        if (newVal.overallScore > 0) {
           //如果数据变化则重新创建数据用于渲染
           this.initCharts(); //处理数据
         }
+        
       },
       immediate: true,
       deep: true, //deep，默认值是 false，代表是否深度监听。
@@ -215,7 +220,7 @@ watch: {
   width: 850px;
 }
 .rate-chart {
-  width: 280px;
+  width: 320px;
   height: 200px;
 }
 .line-chart{

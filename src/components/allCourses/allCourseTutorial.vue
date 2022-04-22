@@ -1,12 +1,16 @@
 
 <template>
 <div class="all-course-tutorial">
-    <el-tabs tab-position=right class="all-course-tutorial-tab"
+    <el-tabs tab-position="top" class="all-course-tutorial-tab"
     >
     <el-tab-pane 
     v-for="tutorial in tutorials" v-bind:key="tutorial"
     :label="tutorial.tutorialTitle">
-    {{tutorial.tutorialContent}}
+    <div class="tutorial-present">
+      <div v-html="tutorial.tutorialContent"></div>
+       
+    </div>
+    
     </el-tab-pane>
 
   </el-tabs>
@@ -22,6 +26,7 @@ export default {
         return {
             currentChapter:"",
             tutorials:[],
+            url:"../../tutorials/PHOTO.jpg"
             
         }
     },
@@ -75,6 +80,13 @@ export default {
 }
 all-course-tutorial-tab{
     height: 100%;
+}
+.tutorial-present{
+    background-color: white;
+}
+.demo-image__lazy {
+  height: 400px;
+  overflow-y: auto;
 }
 
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div class="backGround">
     <el-container>
-      <el-header class="header">Header</el-header>
+      <!-- <el-header class="header">Header</el-header> -->
       <el-main>
         <div class="login">
           <el-form
@@ -12,13 +12,13 @@
             label-width="0px"
             class="demo-ruleForm login-container"
           >
-            <h2 class="title" style="padding-left: 22px">新用户注册</h2>
+            <h2 class="title" style="padding-left: 22px">NEW USER</h2>
             <el-form-item prop="account">
               <el-input
                 type="text"
                 v-model="loginForm.account"
                 auto-complete="off"
-                placeholder="用户名"
+                placeholder="Username"
               ></el-input>
             </el-form-item>
             <el-form-item prop="password">
@@ -26,7 +26,7 @@
                 type="password"
                 v-model="loginForm.password"
                 auto-complete="off"
-                placeholder="密码"
+                placeholder="Password"
               ></el-input>
             </el-form-item>
 
@@ -35,7 +35,7 @@
                 type="password"
                 v-model="loginForm.checkPassword"
                 auto-complete="off"
-                placeholder="确认密码"
+                placeholder="comfirm your password"
               ></el-input>
             </el-form-item>
 
@@ -44,9 +44,29 @@
                 type="text"
                 v-model="loginForm.email"
                 auto-complete="off"
-                placeholder="邮箱地址"
+                placeholder="email"
               ></el-input>
             </el-form-item>
+
+            <el-form-item prop="emailCode">
+              <el-col :span=9>
+                <el-input
+                type="text"
+                v-model="loginForm.emailCode"
+                auto-complete="off"
+                placeholder="email code"
+                ></el-input>
+              </el-col>
+              <el-col :span=1></el-col>
+              <el-col :span=14 style="float:right;">
+                <div  class="send-button">
+                  <el-button :type="style" plain @click="sendCode()"
+                :disabled="disable"
+                >{{this.sendButton}}</el-button>
+                </div>
+                
+              </el-col>
+              </el-form-item>
 
             <el-form-item class="join_formitem">
               <el-form-item class="captcha">
@@ -54,7 +74,7 @@
                   <el-form-item prop="picLyanzhengma">
                     <el-input
                       type="text"
-                      placeholder="请输入验证码"
+                      placeholder="verification code"
                       class="yanzhengma_input"
                       v-model="loginForm.picLyanzhengma"
                     />
@@ -77,7 +97,11 @@
             <el-form-item> </el-form-item>
 
             <el-form-item>
-              同意用户协议 &nbsp;&nbsp;
+              <span style="font-size:16px">Agree to our &nbsp;</span>
+               
+                <el-button type="text" @click="dialogVisible = true" 
+                ><span style="font-size:20px">Terms</span></el-button>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <el-switch
                 v-model="agreeValue"
                 class="ml-2"
@@ -87,13 +111,30 @@
                 active-text="Y"
                 inactive-text="N"
               />
-              &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <el-button type="text" @click="dialogVisible = true"
-                >&nbsp;&nbsp;&nbsp;&nbsp;点击查看用户协议</el-button
-              >
+             
+              
 
-              <el-dialog v-model="dialogVisible" title="用户协议" width="30%">
-                <span>用户协议</span>
+              <el-dialog v-model="dialogVisible" title="Privacy and Terms" width="80%">
+                <span>
+                  
+We publish the JavaX Terms of Service of Service so that you know what to expect as you use JavaX services. By choosing 'I agree' you agree to these terms.<br>
+And remember, JavaX ’s Privacy Policy describes how JavaX handles information generated as you use JavaX services.<br>
+It also includes information about why we process data, such as when we are pursuing legitimate interests while applying appropriate safeguards that protect your privacy. This means that we process your information for things like:<br>
+•	Providing, maintaining and improving our services to meet the needs of our users<br>
+•	Developing new products and features that are useful for our users<br>
+•	Understanding how people use our services to ensure and improve the performance of our services<br>
+•	Customising our services to provide you with a better user experience (and, if relevant, adapting the experience to be age-appropriate)<br>
+•	Marketing to inform users about our services<br>
+•	Providing advertising, which keeps many of our services free (and when ads are personalised, we ask for your consent)<br>
+•	Detecting, preventing or otherwise addressing fraud, abuse, security or technical issues with our services<br>
+•	Protecting against harm to the rights, property or safety of  our users or the public as required or permitted by law, including disclosing information to government authorities<br>
+•	Performing research that improves our services for our users and benefits the public<br>
+•	Fulfilling obligations to our partners, like developers and rights holders<br>
+•	Enforcing legal claims, including investigation of potential violations of applicable Terms of Service<br>
+Have questions? Contact us: fengxue618@gmail.com
+
+
+                </span>
                 <template #footer>
                   <span class="dialog-footer">
                     <el-button @click="dialogVisible = false;agreeValue = false">Disagree</el-button>
@@ -111,19 +152,20 @@
                 type="success"
                 style="width: 48%"
                 @click="onSubmit('loginForm')"
-                >注 册</el-button
+                >Sign Up</el-button
               >
               <el-button
                 type="primary"
                 style="width: 48%"
                 @click="returnLogin()"
-                >返回登陆</el-button
+                >Return</el-button
               >
             </el-form-item>
           </el-form>
         </div>
       </el-main>
-      <el-footer class="footer">Footer</el-footer>
+  
+      <!-- <el-footer class="footer">Footer</el-footer> -->
     </el-container>
   </div>
 </template>
@@ -133,6 +175,7 @@ import { mapMutations } from "vuex";
 import { isPassword, isTarget, isEmail } from "../../utils/validate";
 import { ElMessage } from "element-plus";
 import { ref } from "vue";
+
 
 export default {
   name: "login",
@@ -167,6 +210,11 @@ export default {
       }
     };
     return {
+      sendButton: 'Send verification code',
+      isGeting: false,
+      count: 60,
+      disable: false,
+      style:'primary',
       code: "",
       checkCode: "IHLE",
       data: "",
@@ -186,34 +234,42 @@ export default {
         captcha: "",
         picLyanzhengma: "",
         email: "",
+        emailCode:""
+      },
+      verifyForm:{
+        email:"",
+        verificationCode:"",
+        timeStamp:"",
       },
       fieldRules: {
-        account: [{ required: true, message: "请输入账号", trigger: "blur" }],
+        account: [{ required: true, message: "Required", trigger: "blur" }],
         password: [
-          { required: true, message: "请输入密码", trigger: "blur" },
-          { validator: validatePassword, message: "密码过短", trigger: "blur" },
+          { required: true, message: "Required", trigger: "blur" },
+          { validator: validatePassword, message: "Too short", trigger: "blur" },
         ],
         checkPassword: [
-          { required: true, message: "请再次输入密码", trigger: "blur" },
-          { validator: validatePassword, message: "密码过短", trigger: "blur" },
-          { validator: checkPassword, message: "密码不一致", trigger: "blur" },
+          { required: true, message: "Required", trigger: "blur" },
+          { validator: validatePassword, message: "Too short", trigger: "blur" },
+          { validator: checkPassword, message: "Password does not match", trigger: "blur" },
         ],
         picLyanzhengma: [
-          { required: true, message: "请输入验证码", trigger: "blur" },
+          { required: true, message: "Required", trigger: "blur" },
           {
             validator: validateCaptcha,
-            message: "验证码错误",
+            message: "verification code wrong",
             trigger: "blur",
           },
         ],
         email: [
-          { required: true, message: "请邮箱地址", trigger: "blur" },
+          { required: true, message: "Required", trigger: "blur" },
           {
             validator: validateEmail,
-            message: "请输入正确邮箱地址",
+            message: "Email is invalid",
             trigger: "blur",
           },
         ],
+        emailCode: [
+          { required: true, message: "Required", trigger: "blur" }],
       },
       checked: false,
     };
@@ -226,30 +282,56 @@ export default {
           //同意用户协议
           if (this.agreeValue) {
             //验证通过的逻辑
-            this.register();
+            this.checkInfo();
           } else {
             ElMessage({
               showClose: true,
-              message: "请同意用户协议",
+              message: "please agree our Terms",
               type: "warning",
             });
             return false;
           }
         } else {
           // 验证不通过
-          console.log("error submit!!");
+          // console.log("error submit!!");
           ElMessage({
             showClose: true,
-            message: "信息错误，请检查",
+            message: "Wrong Information",
             type: "error",          
           });
           this.createdCode();
           return false;
         }
       });
-      console.log(this.staffNation);
+      // console.log(this.staffNation);
+    },
+    checkInfo(){
+      this.verifyForm.verificationCode = this.loginForm.emailCode;
+      this.verifyForm.timeStamp = new Date().getTime();
+      this.$axios
+        .post("/apis/checkVerificationCode", this.$qs.stringify(this.verifyForm))
+        .then((res) => {
+          if(res.data.code == 200){
+            this.register();
+          }
+          else if(res.data.msg=="time out"){
+              ElMessage({
+                showClose: true,
+                message: "Email code time out, please try again.",
+                type: "error",
+              });
+          }
+          else if(res.data.msg=="wrong code"){
+              ElMessage({
+                showClose: true,
+                message: "Email code wrong, please try again.",
+                type: "error",
+              });
+          }
+        });   
     },
     register() {
+
       this.loading = true;
       let _this = this;
       this.userRegister.uname = this.loginForm.account;
@@ -258,7 +340,7 @@ export default {
       this.$axios
         .post("/apis/userRegister", this.$qs.stringify(this.userRegister))
         .then((res) => {
-          console.log(res);
+          // console.log(res);
 
           if (res.data.code == 200) {
             ElMessage({
@@ -274,7 +356,14 @@ export default {
                 message: "Username duplicate, please use another one",
                 type: "error",
               });
-            } else  {
+            } 
+            else if (res.data.msg == "duplicate email") {
+              ElMessage({
+                showClose: true,
+                message: "This email has been registered",
+                type: "error",
+              });
+            }else  {
               ElMessage({
                 showClose: true,
                 message: "Something wrong",
@@ -284,10 +373,60 @@ export default {
           }
         });
     },
+     sendCode(){
+      if(this.loginForm.email==""){
+        ElMessage({
+                showClose: true,
+                message: "Email Empty",
+                type: "error",
+              });
+        return;
+      }
+
+      var url = "/apis/sendCodeRegister/";
+      url+= this.loginForm.email;
+      this.$axios
+        .get(url)
+        .then((res) => {
+          console.log(res);
+
+          if (res.data.code == 200) {
+            ElMessage({
+                showClose: true,
+                message: "Verification code has sent to your email. If you haven't received the email, try checking  in spam.",
+                type: "success",
+              });
+              this.verifyForm.email = res.data.msg;
+          } else {
+           ElMessage({
+                showClose: true,
+                message: "This email has already been registered.",
+                type: "error",
+              });
+          }
+        });
+        this.countdown();
+    },
     reset() {
       this.$refs.loginForm.resetFields();
     },
-
+countdown () {
+      var countDown = setInterval(() => {
+        if (this.count < 1) {
+          this.isGeting = false
+          this.disable = false
+          this.sendButton = 'Resend verification code'
+          this.count = 60
+          this.style = 'primary'
+          clearInterval(countDown)
+        } else {
+          this.isGeting = true
+          this.disable = true
+          this.style = 'info'
+          this.sendButton = 'Resend after '+this.count-- + ' seconds'
+        }
+      }, 1000)
+    },
     returnLogin() {
       this.$router.push("/login");
     },
@@ -358,7 +497,7 @@ export default {
 <style lang="scss" scoped>
 .backGround {
   height: 100vh;
-  background: url("~@/assets/login_images/loginBackground.jpeg") center center
+  background: url("~@/assets/login_images/background1.jpg") center center
     fixed no-repeat;
   background-size: cover;
 }
@@ -428,5 +567,8 @@ export default {
 .captcha {
   height: 50px;
   text-align: justify;
+}
+.send-button{
+ float:right;
 }
 </style>

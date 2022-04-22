@@ -45,7 +45,7 @@ export default {
       } else {
         this.iconName = 'Fold'
       }
-             bus.emit('menuCollapse', { isCollapse: this.isCollapse })
+             bus.emit('menuCollapse', { isCollapse: this.isCollapse });
         },
 
 
@@ -59,5 +59,7 @@ export default {
 </script>
 
 <style scoped>
-
+.menu-collapse{
+  padding: 8px;
+}
 </style>

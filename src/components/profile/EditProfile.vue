@@ -169,48 +169,38 @@
                 <el-collapse accordion style="width: 500px; text-align: center">
                   <el-collapse-item name="1">
                     <template #title>
-                      <el-radio :label="1" size="large">biaoti1</el-radio>
+                      <el-radio :label="1" size="large">Beginner</el-radio>
                     </template>
                     <div>
-                      Consistent with real life: in line with the process and
-                      logic of real life, and comply with languages and habits
-                      that the users are used to;
+                      Beginner level introduction
                     </div>
                     <div>
-                      Consistent within interface: all elements should be
-                      consistent, such as: design style, icons and texts,
-                      position of elements, etc.
+                      Beginner level introduction
                     </div>
                   </el-collapse-item>
                   <el-collapse-item name="2">
                     <template #title>
-                      <el-radio :label="2" size="large">biaoti2</el-radio>
+                      <el-radio :label="2" size="large">Intermediate</el-radio>
                     </template>
                     <div>
-                      Operation feedback: enable the users to clearly perceive
-                      their operations by style updates and interactive effects;
+                      Intermediate level introduction
                     </div>
                     <div>
-                      Visual feedback: reflect current state by updating or
-                      rearranging elements of the page.
+                       Intermediate level introduction
                     </div>
                   </el-collapse-item>
                   <el-collapse-item name="3">
                     <template #title>
-                      <el-radio :label="3" size="large">biaoti3</el-radio>
+                      <el-radio :label="3" size="large">Advanced</el-radio>
                     </template>
                     <div>
-                      Simplify the process: keep operating process simple and
-                      intuitive;
+                      Advanced level introduction
                     </div>
                     <div>
-                      Definite and clear: enunciate your intentions clearly so
-                      that the users can quickly understand and make decisions;
+                       Advanced level introduction
                     </div>
                     <div>
-                      Easy to identify: the interface should be straightforward,
-                      which helps the users to identify and frees them from
-                      memorizing and recalling.
+                       Advanced level introduction
                     </div>
                   </el-collapse-item>
                 </el-collapse>
@@ -234,7 +224,7 @@
             <el-card class="my-card" id="card1" shadow="hover">
               <template #header>
                 <div class="my-card-header">
-                  <span>Card name</span>
+                  <span>Module 1</span>
                   <div class="my-card-select">
                     <el-form-item>
                       <el-checkbox
@@ -252,7 +242,7 @@
                   </div>
                 </div>
               </template>
-              sdsfdsdf
+              Module introduction
             </el-card>
           </el-col>
           <el-col :span="1"> </el-col>
@@ -260,7 +250,7 @@
             <el-card class="my-card" id="card2" shadow="hover">
               <template #header>
                 <div class="my-card-header">
-                  <span>Card name</span>
+                  <span>Module 2</span>
                   <div class="my-card-select">
                     <el-form-item>
                       <el-checkbox
@@ -278,7 +268,7 @@
                   </div>
                 </div>
               </template>
-              sdsfdsdf
+              Module introduction
             </el-card>
           </el-col>
           <el-col :span="1"> </el-col>
@@ -286,7 +276,7 @@
             <el-card class="my-card" id="card3" shadow="hover">
               <template #header>
                 <div class="my-card-header">
-                  <span>Card name</span>
+                  <span>Module 3</span>
                   <div class="my-card-select">
                     <el-form-item>
                       <el-checkbox
@@ -304,7 +294,7 @@
                   </div>
                 </div>
               </template>
-              sdsfdsdf
+              Module introduction
             </el-card>
           </el-col>
           <el-col :span="2"> </el-col>
@@ -318,7 +308,7 @@
             <el-card class="my-card" id="card4" shadow="hover">
               <template #header>
                 <div class="my-card-header">
-                  <span>Card name</span>
+                  <span>Module 4</span>
                   <div class="my-card-select">
                     <el-form-item>
                       <el-checkbox
@@ -336,7 +326,7 @@
                   </div>
                 </div>
               </template>
-              sdsfdsdf
+              Module introduction
             </el-card>
           </el-col>
           <el-col :span="1"> </el-col>
@@ -344,7 +334,7 @@
             <el-card class="my-card" id="card5" shadow="hover">
               <template #header>
                 <div class="my-card-header">
-                  <span>Card name</span>
+                  <span>Module 5</span>
                   <div class="my-card-select">
                     <el-form-item>
                       <el-checkbox
@@ -362,7 +352,7 @@
                   </div>
                 </div>
               </template>
-              sdsfdsdf
+              Module introduction
             </el-card>
           </el-col>
           <el-col :span="1"> </el-col>
@@ -370,7 +360,7 @@
             <el-card class="my-card" id="card6" shadow="hover">
               <template #header>
                 <div class="my-card-header">
-                  <span>Card name</span>
+                  <span>Module 6</span>
                   <div class="my-card-select">
                     <el-form-item>
                       <el-checkbox
@@ -388,7 +378,7 @@
                   </div>
                 </div>
               </template>
-              sdsfdsdf
+              Module introduction
             </el-card>
           </el-col>
           <el-col :span="2"> </el-col>
@@ -541,7 +531,7 @@ export default {
   },
   methods: {
     changeCardColor(id, isCheck) {
-      console.log(isCheck);
+      // console.log(isCheck);
       if (isCheck) {
         document.getElementById(id).style.background = "#ccff99";
       } else {
@@ -551,8 +541,8 @@ export default {
     onSubmit(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          console.log("submit!!");
-          console.log(this.profileForm.globalLevel);
+         
+          // console.log(this.profileForm.globalLevel);
           if (
             this.profileForm.globalLevel != 0 &&
             this.profileForm.educationLevel != 0 &&
@@ -575,7 +565,7 @@ export default {
           }
         } else {
           // 验证不通过
-          console.log("error submit!!");
+          // console.log("error submit!!");
           ElMessage({
             showClose: true,
             message: "信息错误，请检查",
@@ -588,7 +578,7 @@ export default {
     updateProfile() {
       this.loading = true;
       let _this = this;
-      console.log(this.transferProfile);
+      // console.log(this.transferProfile);
       this.transferProfile.hasSet = 1;
       this.transferProfile.educationLevel = this.profileForm.educationLevel;
       if (
@@ -604,14 +594,14 @@ export default {
       this.transferProfile.otherExperience = this.profileForm.otherExperience;
       this.transferProfile.globalLevel = this.profileForm.globalLevel;
       this.addSelectModules();
-      console.log(this.transferProfile);
+      // console.log(this.transferProfile);
       this.$axios
         .post(
           "/apis/updateUserProfileSetting",
           this.$qs.stringify(this.transferProfile)
         )
         .then((res) => {
-          console.log(res);
+          // console.log(res);
 
           if (res.data.code == 200) {
             ElMessage({
@@ -665,7 +655,7 @@ export default {
       var url = "/apis/getUserProfileSetting/";
       url += localStorage.getItem("userid");
       _this.$axios.get(url).then((res) => {
-        console.log(res.data.data);
+        // console.log(res.data.data);
         _this.transferProfile.uid = res.data.data.uid;
         if (res.data.data.hasSet == 1) {
           _this.profileForm.educationLevel = res.data.data.educationLevel;
@@ -675,7 +665,7 @@ export default {
           _this.profileForm.otherExperience = res.data.data.otherExperience;
           _this.profileForm.globalLevel = res.data.data.globalLevel;
 
-          console.log(_this.globalLevel);
+          // console.log(_this.globalLevel);
           if (res.data.data.modulesMap.m1 == 1) {
             _this.profileForm.cardCheck.cardCheck1 = true;
             _this.changeCardColor("card1", true);
@@ -701,7 +691,9 @@ export default {
     },
   },
 
-  mounted() {},
+  mounted() {
+    this.$bus.emit('headerNavigate', { navigation: "About/Setting" });
+  },
   created() {
     //获取账号信息
     this.getProfileSetting();

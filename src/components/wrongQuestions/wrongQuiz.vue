@@ -20,7 +20,7 @@
         <el-progress
           :text-inside="true"
           :stroke-width="24"
-          :percentage="parseInt((completedQuestions / allQuestions) * 100)"
+          :percentage="completedQuestions==0? 0: parseInt((completedQuestions / allQuestions) * 100)"
           status="success"
         />
       </el-col>
@@ -28,7 +28,7 @@
       <el-col :span="2" style="text-align: center">
         <el-progress
           type="circle"
-          :percentage="parseInt((correctQuestions / completedQuestions) * 100)"
+          :percentage="correctQuestions==0? 0:parseInt((correctQuestions / completedQuestions) * 100)"
           :width="60"
         />
       </el-col>
@@ -41,7 +41,7 @@
       <el-col :span="6" style="font-size: 18px">
         <div style="display: inline">Difficulty:</div>
         <el-rate
-          v-model="quizs[currentIndex].globalLevel"
+          :model-value="parseInt(quizs[currentIndex].globalLevel)"
           disabled
           :max="3"
           size="large"
@@ -132,7 +132,7 @@
         <el-progress
           :text-inside="true"
           :stroke-width="24"
-          :percentage="parseInt((correctQuestions / allQuestions) * 100)"
+          :percentage="correctQuestions==0? 0:parseInt((correctQuestions / allQuestions) * 100)"
           status="success"
           style="width: 500px; padding-bottom: 15px"
         />
@@ -151,7 +151,7 @@
             :text-inside="true"
             :stroke-width="24"
             :percentage="
-              parseInt(
+              paragraphCorrect.get(paragraph[0])==0? 0:parseInt(
                 (paragraphCorrect.get(paragraph[0]) /
                   paragraphAll.get(paragraph[0])) *
                   100
@@ -306,14 +306,14 @@ export default {
       var _this = this;
       var url = "/apis/saveWrongQuiz/";
       url += localStorage.getItem("userid");
-      console.log("url:" + url);
+      // console.log("url:" + url);
       this.transferQuiz.uid = localStorage.getItem("userid");
       this.transferQuiz.correctQuiz = this.questionSetCorrect;
       this.transferQuiz.wrongQuiz = this.questionSetWrong;
       _this.$axios
         .post(url, this.$qs.stringify(this.transferQuiz))
         .then((res) => {
-          console.log(res);
+           console.log(res);
         });
       this.drawer = false;
       ElMessage({
@@ -349,7 +349,7 @@ export default {
       var _this = this;
       var url = "/apis/getWrongQuiz/";
       url += localStorage.getItem("userid");
-      console.log("url:" + url);
+      // console.log("url:" + url);
 
       let response = await  _this.$axios.get(url);
               if (response.data.msg == "no wrong") {
@@ -383,9 +383,9 @@ export default {
       //监听路由是否变化
       if (to != from) {
         //window.location.reload();
-        console.log("watch函数启动");
+        // console.log("watch函数启动");
         this.init();
-        console.log("watch函数完成");
+        // console.log("watch函数完成");
       }
     },
   },

@@ -41,19 +41,19 @@ export default {
       if (command == "myAccount") {
         this.$router.push("/accountManage");
       } else if (command == "signOut") {
-        console.log("@@@@@@@@");
-        console.log(localStorage.getItem("userid"));
+        
+        // console.log(localStorage.getItem("userid"));
         localStorage.removeItem("Authorization");
         localStorage.removeItem("username");
         localStorage.removeItem("userid");
         this.$router.push("/login");
         ElMessage({
           showClose: true,
-          message: "已退出登陆",
+          message: "Sign out",
           type: "warning",
         });
       } else {
-        console.log("error");
+        // console.log("error");
       }
     },
   },

@@ -10,7 +10,7 @@
             </div>
           </template>
           <el-row>
-            <el-col :span="17">
+            <el-col :span="16">
               <div
                 v-for="assessment in module.moduleAssessment"
                 :key="assessment"
@@ -20,7 +20,7 @@
             </el-col>
 
 
-            <el-col :span="7" style="text-align: right;">
+            <el-col :span="8" style="text-align: right;">
 <div :id="'module_' + index" class="done-chart"></div>
             </el-col>
           </el-row>
@@ -53,8 +53,12 @@
 export default {
   name: "ModuleAssessment",
   props: {
-    doneModules: [],
-    undoneModules: [],
+    doneModules:{
+      type:Array,
+    },
+    undoneModules:{
+      type:Array,
+    },
   },
   data() {
     return {};
@@ -63,17 +67,17 @@ export default {
   methods: {
     getEchart(index) {
       var domId = "module_" + index;
-      console.log("id=" + domId);
+      // console.log("id=" + domId);
       // 基于准备好的dom，初始化echarts实例
       var myChart = this.$echarts.init(document.getElementById(domId));
       // 绘制图表
       myChart.setOption({
         color:['green','red'],
         title: {
-          text:(this.doneModules[index].quizRight /
+          text:parseInt( (this.doneModules[index].quizRight /
               (this.doneModules[index].quizRight +
                 this.doneModules[index].quizWrong)) *
-              100 +
+              100) +
             "%",
           left: "center",
           top: "center",
@@ -103,8 +107,8 @@ export default {
       this.$nextTick(() => {
         var len = this.doneModules.length;
         for (var i = 0; i < len; i++) {
-          console.log(this.doneModules[i].moduleTitle);
-          console.log("iiid:" + i);
+          // console.log(this.doneModules[i].moduleTitle);
+          
           this.getEchart(i);
         }
       });
@@ -115,8 +119,9 @@ export default {
   watch: {
     doneModules: {
       handler(newVal, oldVal) {
-        console.log(oldVal);
-        if (newVal) {
+         console.log(oldVal);
+ 
+        if (newVal.length) {
           //如果数据变化则重新创建数据用于渲染
           this.initCharts(); //处理数据
         }
@@ -124,6 +129,7 @@ export default {
       immediate: true,
       deep: true, //deep，默认值是 false，代表是否深度监听。
     },
+    
   },
 };
 </script>
@@ -139,7 +145,7 @@ export default {
 				align-content: center;/*定义了多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用*/
 }
 .done-chart {
-  width: 280px;
+  width: 350px;
   height: 200px;
   
 }

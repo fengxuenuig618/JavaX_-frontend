@@ -131,7 +131,7 @@ export default {
       url += moduleId;
       let response = await this.$axios.get(url);
       if(response.data.msg=="yes"){
-          this.$router.push({ path: '/moduleQuiz', query: { moduleId: module.moduleId, tab:'moduleQuizTab'} });
+          this.$router.push({ path: '/moduleQuiz', query: { moduleId: moduleId, tab:'moduleQuizTab'} });
               this.$bus.emit('headerNavigate', { navigation: 'My Modules/'+module.moduleTitle+'/Module Quiz' });
       }
       else{

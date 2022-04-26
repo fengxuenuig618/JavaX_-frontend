@@ -397,12 +397,15 @@ export default {
                 type: "success",
               });
               this.verifyForm.email = res.data.msg;
-          } else {
+          } else if(res.data.msg=="email exist"){
            ElMessage({
                 showClose: true,
                 message: "This email has already been registered.",
                 type: "error",
               });
+          }
+          else{
+            this.$router.push("/404");
           }
         });
         this.countdown();

@@ -96,6 +96,7 @@ export default {
             if(this.$route.query.preQuiz=="true"){
                 this.preQuizTitle = "Pre-Class Quiz ✔️";
                 this.statePre = true;
+                this.disable = false;
             } 
             else {
               this.preQuizTitle = "Pre-Class Quiz";
@@ -119,20 +120,19 @@ export default {
         
     },
     mounted(){
+      this.init();
         //console.log(this.$route.query);
-        this.init();
-
-
-        bus.on('preDone', e => {
         
-        if(e.isDone){
-          this.preQuizTitle = "Pre-Class Quiz ✔️";
-          this.disable = false;
-        }
-      } );
-      bus.on('afterDone', e => {
-        if(e.isDone){this.afterQuizTitle = "Quiz ✔️";}
-      } )
+      //   bus.on('preDone', e => {
+        
+      //   if(e.isDone){
+      //     this.preQuizTitle = "Pre-Class Quiz ✔️";
+      //     this.disable = false;
+      //   }
+      // } );
+      // bus.on('afterDone', e => {
+      //   if(e.isDone){this.afterQuizTitle = "Quiz ✔️";}
+      // } )
         //this.currentChapter = global.currentAllCourseChapter;
 
     },

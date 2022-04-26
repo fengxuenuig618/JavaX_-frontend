@@ -416,13 +416,17 @@ export default {
     },
     async confirmQuiz(){
         this.saveRecords();
-         ElMessage({
+         
+          this.drawer = false;   
+          await this.saveTurorial();  
+          ElMessage({
             showClose: true,
             message: "save success",
             type: "success",
           });
-          this.drawer = false;   
-          await this.saveTurorial();     
+          this.$router.push({ path: '/myCourses', query: { chapterId: this.currentChapter, globalLevel:this.globalLevel,
+          tab:"tutorialTab",preQuiz:"true",afterQuiz:this.$route.query.afterQuiz,navigation: this.$route.query.navigation} });
+
     },
     async saveTurorial(){
        var _this = this;
@@ -492,7 +496,7 @@ export default {
     this.init();
   },
   mounted() {
-    this.init();
+    
   },
   watch: {
     chapterId() {
@@ -519,6 +523,7 @@ export default {
   padding-right: 30px;
   padding-bottom: 50px;
   padding-left: 80px;
+  white-space: pre-wrap;
 }
 .question-options {
   height: 100%;

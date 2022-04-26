@@ -314,6 +314,9 @@ export default {
             type: "success",
           });
           this.drawer = false;
+          this.$router.push({ path: '/myCourses', query: { chapterId: this.currentChapter, globalLevel:this.globalLevel,
+          tab:"tutorialTab",preQuiz:"true",afterQuiz:"true",navigation: this.$route.query.navigation} });
+
           
     },
     nextQuestion() {
@@ -389,7 +392,7 @@ this.currentIndex=0;
 
   },
   mounted() {
-      this.init();
+      
   },
   watch: {
         chapterId(){
@@ -415,6 +418,7 @@ this.currentIndex=0;
   padding-right: 30px;
   padding-bottom: 50px;
   padding-left: 80px;
+  white-space: pre-wrap;
 }
 .question-options {
   height: 100%;

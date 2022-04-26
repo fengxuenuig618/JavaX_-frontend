@@ -158,12 +158,15 @@ export default {
                 type: "success",
               });
               this.verifyForm.email = res.data.msg;
-          } else {
+          } else if(res.data.msg=="no such user"){
            ElMessage({
                 showClose: true,
                 message: "Account does not exist, please try again",
                 type: "error",
               });
+          }
+          else{
+            this.$router.push("/404");
           }
         });
         this.countdown();

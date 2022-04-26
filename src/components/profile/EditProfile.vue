@@ -172,10 +172,10 @@
                       <el-radio :label="1" size="large">Beginner</el-radio>
                     </template>
                     <div>
-                      Beginner level introduction
+                      Introduce the basic concepts and basic usage of Java.
                     </div>
                     <div>
-                      Beginner level introduction
+                      <b>Suitable for learners with no or little programming language related foundation.</b>
                     </div>
                   </el-collapse-item>
                   <el-collapse-item name="2">
@@ -183,10 +183,10 @@
                       <el-radio :label="2" size="large">Intermediate</el-radio>
                     </template>
                     <div>
-                      Intermediate level introduction
+                      Provide advanced knowledge reference of Java, common usage methods and application scenarios.
                     </div>
                     <div>
-                       Intermediate level introduction
+                       <b>Suitable for learners with certain computer and programming foundation.</b>
                     </div>
                   </el-collapse-item>
                   <el-collapse-item name="3">
@@ -194,13 +194,11 @@
                       <el-radio :label="3" size="large">Advanced</el-radio>
                     </template>
                     <div>
-                      Advanced level introduction
+                      Provides a comprehensive Java tutorial including all advanced syntax and complex functions.
                     </div>
                     <div>
-                       Advanced level introduction
-                    </div>
-                    <div>
-                       Advanced level introduction
+                      <b>
+                       Suitable for professionals in computer science or learners with relevant object-oriented programming language experience.</b>
                     </div>
                   </el-collapse-item>
                 </el-collapse>
@@ -224,7 +222,7 @@
             <el-card class="my-card" id="card1" shadow="hover">
               <template #header>
                 <div class="my-card-header">
-                  <span>Module 1</span>
+                  <span> <b> Java Basic</b></span>
                   <div class="my-card-select">
                     <el-form-item>
                       <el-checkbox
@@ -242,7 +240,9 @@
                   </div>
                 </div>
               </template>
-              Module introduction
+              <span>
+                Language Basics describes the traditional features of the language, including variables, arrays, data types, operators, and control flow.
+              </span>
             </el-card>
           </el-col>
           <el-col :span="1"> </el-col>
@@ -250,7 +250,7 @@
             <el-card class="my-card" id="card2" shadow="hover">
               <template #header>
                 <div class="my-card-header">
-                  <span>Module 2</span>
+                  <span><b>Classes & Objects</b></span>
                   <div class="my-card-select">
                     <el-form-item>
                       <el-checkbox
@@ -268,7 +268,9 @@
                   </div>
                 </div>
               </template>
-              Module introduction
+              <span>
+                Classes and Objects describes how to write the classes from which objects are created, and how to create and use the objects.
+              </span>
             </el-card>
           </el-col>
           <el-col :span="1"> </el-col>
@@ -276,7 +278,7 @@
             <el-card class="my-card" id="card3" shadow="hover">
               <template #header>
                 <div class="my-card-header">
-                  <span>Module 3</span>
+                  <span><b>Annotation</b></span>
                   <div class="my-card-select">
                     <el-form-item>
                       <el-checkbox
@@ -294,7 +296,9 @@
                   </div>
                 </div>
               </template>
-              Module introduction
+              <span>
+                Annotations are a form of metadata and provide information for the compiler. This lesson describes where and how to use annotations in a program effectively.
+              </span>
             </el-card>
           </el-col>
           <el-col :span="2"> </el-col>
@@ -308,7 +312,7 @@
             <el-card class="my-card" id="card4" shadow="hover">
               <template #header>
                 <div class="my-card-header">
-                  <span>Module 4</span>
+                  <span><b>Interface & Inheritance</b></span>
                   <div class="my-card-select">
                     <el-form-item>
                       <el-checkbox
@@ -326,7 +330,9 @@
                   </div>
                 </div>
               </template>
-              Module introduction
+              <span>
+                Interfaces and Inheritance describes interfaces and inheritance —what they are, why you would want to write one, and how to write one. 
+              </span>
             </el-card>
           </el-col>
           <el-col :span="1"> </el-col>
@@ -334,7 +340,7 @@
             <el-card class="my-card" id="card5" shadow="hover">
               <template #header>
                 <div class="my-card-header">
-                  <span>Module 5</span>
+                  <span><b>Generics</b></span>
                   <div class="my-card-select">
                     <el-form-item>
                       <el-checkbox
@@ -352,7 +358,9 @@
                   </div>
                 </div>
               </template>
-              Module introduction
+              <span>
+                Generics are a powerful feature of the Java programming language. They improve the type safety of your code, making more of your bugs detectable at compile time.
+              </span>
             </el-card>
           </el-col>
           <el-col :span="1"> </el-col>
@@ -360,7 +368,7 @@
             <el-card class="my-card" id="card6" shadow="hover">
               <template #header>
                 <div class="my-card-header">
-                  <span>Module 6</span>
+                  <span><b>Packages</b></span>
                   <div class="my-card-select">
                     <el-form-item>
                       <el-checkbox
@@ -378,7 +386,9 @@
                   </div>
                 </div>
               </template>
-              Module introduction
+              <span>
+                Packages are a feature of the Java programming language that help you to organize and structure your classes and their relationships to one another.
+              </span>
             </el-card>
           </el-col>
           <el-col :span="2"> </el-col>
@@ -401,7 +411,7 @@
           "
         >
           <el-button type="success" @click="onSubmit('profileForm')" plain
-            >UPDATE MY PROFILE</el-button
+            >UPDATE</el-button
           >
         </div>
 
@@ -441,6 +451,13 @@ export default {
           cardCheck6: ref(false),
         },
       },
+      modulesInfo:[
+        {
+          moduleId:"",
+          moduleTitle:"",
+          cardIntroduce:"",
+        }
+      ],
 
       options: {
         educationOption: [
@@ -530,6 +547,19 @@ export default {
     };
   },
   methods: {
+    async getModuleInfo(){
+      var _this = this;
+      var url = "/apis/getModuleInfo";
+      let response = await _this.$axios.get(url);
+      console.log(response);
+      if (response.data.code == 200){
+        this.modulesInfo = response.data.data;
+      }
+      else{
+        console.log("wwwwww");
+      }
+      console.log(this.modulesInfo[0].moduleTitle);
+    },
     changeCardColor(id, isCheck) {
       // console.log(isCheck);
       if (isCheck) {
@@ -552,7 +582,8 @@ export default {
               this.profileForm.cardCheck.cardCheck2 ||
               this.profileForm.cardCheck.cardCheck3 ||
               this.profileForm.cardCheck.cardCheck4 ||
-              this.profileForm.cardCheck.cardCheck5)
+              this.profileForm.cardCheck.cardCheck5||
+              this.profileForm.cardCheck.cardCheck6)
           ) {
             this.updateProfile();
           } else {
@@ -647,6 +678,11 @@ export default {
           temp += "m5";
           isFirst=false;
       } 
+      if(this.profileForm.cardCheck.cardCheck6){
+          if(!isFirst) temp += ","; 
+          temp += "m6";
+          isFirst=false;
+      }
       this.transferProfile.selectModules = temp;
     },
 
@@ -686,17 +722,27 @@ export default {
             _this.profileForm.cardCheck.cardCheck5 = true;
             _this.changeCardColor("card5", true);
           }
+          if (res.data.data.modulesMap.m6 == 1) {
+            _this.profileForm.cardCheck.cardCheck6 = true;
+            _this.changeCardColor("card6", true);
+          }
         }
       });
     },
+    async init(){
+        this.getProfileSetting();
+        await this.getModuleInfo();
+        
+    }
   },
 
   mounted() {
-    this.$bus.emit('headerNavigate', { navigation: "About/Setting" });
+    this.init();
+    this.$bus.emit('headerNavigate', { navigation: "Profile/Setting" });
   },
   created() {
     //获取账号信息
-    this.getProfileSetting();
+    this.init();
   },
 };
 </script>

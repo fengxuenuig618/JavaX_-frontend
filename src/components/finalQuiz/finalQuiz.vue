@@ -403,6 +403,7 @@ export default {
   padding-right: 30px;
   padding-bottom: 50px;
   padding-left: 80px;
+  white-space: pre-wrap;
 }
 .question-options {
   height: 100%;

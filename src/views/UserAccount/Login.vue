@@ -201,6 +201,9 @@ export default {
               });
               this.createdCode();
             }
+            else{
+              _this.$router.push("/404");
+            }
           }
         });
     },

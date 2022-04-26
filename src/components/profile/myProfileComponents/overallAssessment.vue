@@ -19,19 +19,20 @@
     <el-row><el-col :span="24">&nbsp;</el-col></el-row>
 
     <el-row>
-      <el-col :span="16">
+      <el-col :span="15">
         <div
           v-for="assessment in this.profileData.overallAssessment"
           :key="assessment"
         >
           <span style="font-size: 20px">{{ assessment }}</span>
-        </div>
-        <br><br>
-        <div class="line-chart" :id="'lineChart'"></div>
+        </div>        
       </el-col>
-      <el-col :span="8">
+      <el-col :span="9">
         <div class="rate-chart" :id="'rateChart'"></div>
       </el-col>
+    </el-row>
+    <el-row>
+      <div class="line-chart" :id="'lineChart'"></div>
     </el-row>
   </div>
 </template>
@@ -220,11 +221,11 @@ watch: {
   width: 850px;
 }
 .rate-chart {
-  width: 320px;
+  width: 360px;
   height: 200px;
 }
 .line-chart{
-  width: 650px;
+  width: 850px;
   height: 200px;
 }
 </style>

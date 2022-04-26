@@ -2,12 +2,14 @@
 <template>
   <div class="dropdown">
     <el-dropdown @command="dropdownCommand">
-      <span class="el-dropdown-link" style="font-size: 16px">
+      <span class="el-dropdown-link" style="font-size: 16px;">
+        <div class="v-adjust">
         <el-icon :size="20"><avatar /></el-icon>
-        {{ userName
-        }}<el-icon class="el-icon--right"
+        <span>{{ userName}}</span>
+        <el-icon class="el-icon--right"
           ><el-icon><arrow-down-bold /></el-icon
         ></el-icon>
+        </div>
       </span>
       <template #dropdown>
         <el-dropdown-menu>
@@ -62,9 +64,14 @@ export default {
 
 <style scoped>
 .dropdown {
-  background-color: white;
   text-align: right;
-
   padding: 10px;
+}
+.v-adjust .el-icon{
+  vertical-align: middle;
+}
+.v-adjust span {
+  vertical-align: middle;
+  margin-left: 4px;
 }
 </style>

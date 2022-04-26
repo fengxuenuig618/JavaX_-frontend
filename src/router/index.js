@@ -24,9 +24,14 @@ const routes = [
     component: () => import("../views/UserAccount/ResetPassword.vue"),
   },
   {
-    path: "/index",
-    name: "Index",
-    component: () => import("../views/index/index.vue"),
+    path: "/404",
+    name: "Page404",
+    component: () => import("../views/404.vue"),
+  },
+  {
+    path: "/401",
+    name: "Page401",
+    component: () => import("../views/401.vue"),
   },
   
   {
@@ -48,6 +53,10 @@ const routes = [
 
 
   },
+  {
+    path: "/:catchAll(.*)",    // 404 路由捕获
+    redirect: '/404'
+  }
  
 
 ];
@@ -59,15 +68,15 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
 
-  if (to.path == '/login' || to.path == '/register' 
+  if (to.path == '/login' || to.path == '/register' || to.path == '/401' || to.path == '/404'
   || to.path == '/forgotPassword' || to.path == '/resetPassword') {
     next();
   } else {
     const token = localStorage.getItem('Authorization'); // 获取token
     // token不存在
     if (token === null || token === '') {
-      alert('Log in first, please');
-      next('/login');
+      
+      next('/401');
     } else {
       next();
     }

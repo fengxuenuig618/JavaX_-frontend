@@ -174,7 +174,11 @@ export default {
               bus.on('profileSet', e => {
         this.hasSet=e.profileSet;
         this.init();
-      } )
+      } );
+      bus.on('refresh', e => {
+        console.log(e);
+        this.init();
+      } );
   },
 };
 </script>

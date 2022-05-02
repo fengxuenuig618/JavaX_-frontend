@@ -54,15 +54,17 @@ export default {
             "Set your goals to unlock customized learning content.",
             "New user?",
             {
-              confirmButtonText: "SET NOW",
-              cancelButtonText: "LATER",
+              confirmButtonText: "Set Now",
+              cancelButtonText: "Later",
               type: "warning",
             }
           )
             .then(() => {
               this.$router.push("/EditProfile");
             })
-            .catch(() => {});
+            .catch(() => {
+              this.$router.push("/userGuidePage");
+            });
         }
       } else {
         this.$router.push("/404");

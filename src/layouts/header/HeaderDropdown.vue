@@ -48,6 +48,7 @@ export default {
         localStorage.removeItem("Authorization");
         localStorage.removeItem("username");
         localStorage.removeItem("userid");
+        localStorage.removeItem("lastDate");
         this.$router.push("/login");
         ElMessage({
           showClose: true,

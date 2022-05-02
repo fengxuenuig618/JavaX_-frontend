@@ -15,7 +15,7 @@
       <el-col :span=5>
         <div class="text-right">
         <el-icon><chat-dot-round /></el-icon>
-        <el-link href="#/aboutPage" type="warning" target="_self">
+        <el-link href="#/feedbackPage" type="warning" target="_self">
         Report bug</el-link>
         </div>
       </el-col>

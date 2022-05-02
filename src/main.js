@@ -14,6 +14,7 @@ import qs from "qs";
 import ElementPlus from "element-plus"
 import "element-plus/dist/index.css"
 import eventBus from 'vue3-eventbus'
+import './assets/icon/iconfont.css'
 
 import * as echarts from 'echarts';
 

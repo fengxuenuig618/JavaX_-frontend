@@ -121,6 +121,10 @@ export default {
     },
     mounted(){
       this.init();
+      bus.on('refresh', e => {
+        console.log(e);
+        this.init();
+      } );
         //console.log(this.$route.query);
         
       //   bus.on('preDone', e => {

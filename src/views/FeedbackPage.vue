@@ -45,7 +45,7 @@ import { ref } from "vue";
 import { ElMessage } from "element-plus";
 
 export default {
-  name: "AboutPage",
+  name: "FeedbackPage",
   
   data() {
     return {
@@ -129,7 +129,7 @@ var _this = this;
     }
   },
   mounted(){
-    this.$bus.emit('headerNavigate', { navigation: "About" });
+    this.$bus.emit('headerNavigate', { navigation: "Feedback" });
   },
   created(){
       

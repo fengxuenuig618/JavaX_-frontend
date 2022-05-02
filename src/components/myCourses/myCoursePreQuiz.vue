@@ -307,6 +307,8 @@ export default {
       //结果页复选框
       checkAll: ref(false),
       checkedParagraphs: ref([]),
+
+      
     };
   },
   components: {},
@@ -426,7 +428,8 @@ export default {
           });
           this.$router.push({ path: '/myCourses', query: { chapterId: this.currentChapter, globalLevel:this.globalLevel,
           tab:"tutorialTab",preQuiz:"true",afterQuiz:this.$route.query.afterQuiz,navigation: this.$route.query.navigation} });
-
+          this.$bus.emit("refresh");
+          // window.location.reload();
     },
     async saveTurorial(){
        var _this = this;

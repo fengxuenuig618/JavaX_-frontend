@@ -62,7 +62,7 @@
         ></el-input>
       </el-form-item>
 
-      <el-form-item prop="captcha" label="captcha">
+      <el-form-item prop="captcha" label="verification code">
         <el-col :span="12">
           <el-input
             type="text"

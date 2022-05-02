@@ -50,7 +50,7 @@
         jumpTime: 5,
         oops: 'Sorry!',
         headline: 'You do not have permission...',
-        info: 'Please log in to continue',
+        info: 'Please login to continue',
         btn: 'Back to login',
         timer: 0,
       }

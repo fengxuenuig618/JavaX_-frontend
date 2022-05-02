@@ -1,0 +1,16 @@
+{
+  "id": "3371476",
+  "name": "no name",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "27681164",
+      "name": "java",
+      "font_class": "java",
+      "unicode": "e69a",
+      "unicode_decimal": 59034
+    }
+  ]
+}

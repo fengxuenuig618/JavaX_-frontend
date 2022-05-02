@@ -9,8 +9,8 @@
       </el-col>
       <el-col :span="8" style="text-align: right">
         <div style="margin-top: 15px">
-          <el-button type="success" @click="$router.push('/EditProfile')" plain
-            >edit your setting</el-button
+          <el-button type="success"  @click="$router.push('/EditProfile')" plain
+            ><el-icon><tools /></el-icon>&nbsp;learning management</el-button
           >
         </div>
       </el-col>
@@ -39,6 +39,7 @@
 
 
 <script >
+import { Tools } from '@element-plus/icons-vue'
 export default {
   name: "OverallAssessment",
   props: {
@@ -53,7 +54,7 @@ export default {
         }
     },
     components:{
-
+        Tools
     },
     methods: {
       initCharts(){

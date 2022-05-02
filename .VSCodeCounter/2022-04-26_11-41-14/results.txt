@@ -1,0 +1,88 @@
+Date : 2022-04-26 11:41:14
+Directory : e:\myWorkPlace\vue-element-app\src
+Total : 45 files,  7840 codes, 433 comments, 724 blanks, all 8997 lines
+
+Languages
++------------+------------+------------+------------+------------+------------+
+| language   | files      | code       | comment    | blank      | total      |
++------------+------------+------------+------------+------------+------------+
+| Vue        |         41 |      7,637 |        305 |        658 |      8,600 |
+| JavaScript |          4 |        203 |        128 |         66 |        397 |
++------------+------------+------------+------------+------------+------------+
+
+Directories
++-------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                            | files      | code       | comment    | blank      | total      |
++-------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                               |         45 |      7,840 |        433 |        724 |      8,997 |
+| components                                                                                      |         21 |      4,851 |        191 |        335 |      5,377 |
+| components\allCourses                                                                           |          3 |        569 |         34 |         48 |        651 |
+| components\finalQuiz                                                                            |          2 |        458 |         22 |         31 |        511 |
+| components\moduleQuiz                                                                           |          2 |        470 |         26 |         29 |        525 |
+| components\myCourses                                                                            |          4 |      1,124 |         32 |         74 |      1,230 |
+| components\profile                                                                              |          5 |      1,290 |         36 |         78 |      1,404 |
+| components\profile\myProfileComponents                                                          |          3 |        429 |         22 |         44 |        495 |
+| components\wrongQuestions                                                                       |          2 |        455 |         26 |         27 |        508 |
+| layouts                                                                                         |          9 |        648 |         12 |        130 |        790 |
+| layouts\footer                                                                                  |          1 |         63 |          0 |          5 |         68 |
+| layouts\header                                                                                  |          4 |        206 |          2 |         43 |        251 |
+| layouts\menu                                                                                    |          3 |        329 |         10 |         56 |        395 |
+| router                                                                                          |          1 |         72 |          1 |         15 |         88 |
+| store                                                                                           |          1 |         14 |          2 |         11 |         27 |
+| utils                                                                                           |          1 |         90 |        117 |         22 |        229 |
+| views                                                                                           |         10 |      2,113 |         85 |        186 |      2,384 |
+| views\UserAccount                                                                               |          4 |      1,315 |         72 |         77 |      1,464 |
+| views\index                                                                                     |          1 |        101 |          7 |         23 |        131 |
++-------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++-------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| filename                                                                                        | language   | code       | comment    | blank      | total      |
++-------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| e:\myWorkPlace\vue-element-app\src\App.vue                                                      | Vue        |         25 |         17 |          7 |         49 |
+| e:\myWorkPlace\vue-element-app\src\components\AccountManage.vue                                 | Vue        |        335 |         15 |         34 |        384 |
+| e:\myWorkPlace\vue-element-app\src\components\HelloWorld.vue                                    | Vue        |        128 |          0 |          3 |        131 |
+| e:\myWorkPlace\vue-element-app\src\components\Page1.vue                                         | Vue        |         22 |          0 |         11 |         33 |
+| e:\myWorkPlace\vue-element-app\src\components\allCourses\allCourseQuiz.vue                      | Vue        |        398 |         25 |         16 |        439 |
+| e:\myWorkPlace\vue-element-app\src\components\allCourses\allCourseTutorial.vue                  | Vue        |         75 |          2 |         15 |         92 |
+| e:\myWorkPlace\vue-element-app\src\components\allCourses\index.vue                              | Vue        |         96 |          7 |         17 |        120 |
+| e:\myWorkPlace\vue-element-app\src\components\finalQuiz\finalQuiz.vue                           | Vue        |        395 |         13 |         15 |        423 |
+| e:\myWorkPlace\vue-element-app\src\components\finalQuiz\index.vue                               | Vue        |         63 |          9 |         16 |         88 |
+| e:\myWorkPlace\vue-element-app\src\components\moduleQuiz\index.vue                              | Vue        |         73 |          9 |         16 |         98 |
+| e:\myWorkPlace\vue-element-app\src\components\moduleQuiz\moduleQuiz.vue                         | Vue        |        397 |         17 |         13 |        427 |
+| e:\myWorkPlace\vue-element-app\src\components\myCourses\index.vue                               | Vue        |        136 |         13 |         19 |        168 |
+| e:\myWorkPlace\vue-element-app\src\components\myCourses\myCoursePreQuiz.vue                     | Vue        |        506 |         11 |         27 |        544 |
+| e:\myWorkPlace\vue-element-app\src\components\myCourses\myCourseQuiz.vue                        | Vue        |        412 |          6 |         20 |        438 |
+| e:\myWorkPlace\vue-element-app\src\components\myCourses\myCourseTutorial.vue                    | Vue        |         70 |          2 |          8 |         80 |
+| e:\myWorkPlace\vue-element-app\src\components\profile\EditProfile.vue                           | Vue        |        766 |         13 |         27 |        806 |
+| e:\myWorkPlace\vue-element-app\src\components\profile\MyProfile.vue                             | Vue        |         95 |          1 |          7 |        103 |
+| e:\myWorkPlace\vue-element-app\src\components\profile\myProfileComponents\moduleAssessment.vue  | Vue        |        138 |          5 |         12 |        155 |
+| e:\myWorkPlace\vue-element-app\src\components\profile\myProfileComponents\myCalendar.vue        | Vue        |         90 |         10 |          9 |        109 |
+| e:\myWorkPlace\vue-element-app\src\components\profile\myProfileComponents\overallAssessment.vue | Vue        |        201 |          7 |         23 |        231 |
+| e:\myWorkPlace\vue-element-app\src\components\wrongQuestions\index.vue                          | Vue        |         64 |          9 |         15 |         88 |
+| e:\myWorkPlace\vue-element-app\src\components\wrongQuestions\wrongQuiz.vue                      | Vue        |        391 |         17 |         12 |        420 |
+| e:\myWorkPlace\vue-element-app\src\layouts\footer\index.vue                                     | Vue        |         63 |          0 |          5 |         68 |
+| e:\myWorkPlace\vue-element-app\src\layouts\header\HeaderCollapse.vue                            | Vue        |         51 |          0 |         14 |         65 |
+| e:\myWorkPlace\vue-element-app\src\layouts\header\HeaderDropdown.vue                            | Vue        |         70 |          2 |          5 |         77 |
+| e:\myWorkPlace\vue-element-app\src\layouts\header\HeaderNavigation.vue                          | Vue        |         33 |          0 |         12 |         45 |
+| e:\myWorkPlace\vue-element-app\src\layouts\header\index.vue                                     | Vue        |         52 |          0 |         12 |         64 |
+| e:\myWorkPlace\vue-element-app\src\layouts\index.vue                                            | Vue        |         50 |          0 |         26 |         76 |
+| e:\myWorkPlace\vue-element-app\src\layouts\menu\AllCourses.vue                                  | Vue        |         67 |          5 |         19 |         91 |
+| e:\myWorkPlace\vue-element-app\src\layouts\menu\MyCourses.vue                                   | Vue        |        179 |          4 |         12 |        195 |
+| e:\myWorkPlace\vue-element-app\src\layouts\menu\index.vue                                       | Vue        |         83 |          1 |         25 |        109 |
+| e:\myWorkPlace\vue-element-app\src\main.js                                                      | JavaScript |         27 |          8 |         18 |         53 |
+| e:\myWorkPlace\vue-element-app\src\router\index.js                                              | JavaScript |         72 |          1 |         15 |         88 |
+| e:\myWorkPlace\vue-element-app\src\store\index.js                                               | JavaScript |         14 |          2 |         11 |         27 |
+| e:\myWorkPlace\vue-element-app\src\utils\validate.js                                            | JavaScript |         90 |        117 |         22 |        229 |
+| e:\myWorkPlace\vue-element-app\src\views\401.vue                                                | Vue        |        265 |          3 |         29 |        297 |
+| e:\myWorkPlace\vue-element-app\src\views\404.vue                                                | Vue        |        265 |          3 |         29 |        297 |
+| e:\myWorkPlace\vue-element-app\src\views\AboutPage.vue                                          | Vue        |        140 |          0 |         17 |        157 |
+| e:\myWorkPlace\vue-element-app\src\views\Event.vue                                              | Vue        |         19 |          0 |         10 |         29 |
+| e:\myWorkPlace\vue-element-app\src\views\Global.vue                                             | Vue        |          8 |          0 |          1 |          9 |
+| e:\myWorkPlace\vue-element-app\src\views\UserAccount\ForgotPassword.vue                         | Vue        |        262 |         12 |         22 |        296 |
+| e:\myWorkPlace\vue-element-app\src\views\UserAccount\Login.vue                                  | Vue        |        321 |         25 |         12 |        358 |
+| e:\myWorkPlace\vue-element-app\src\views\UserAccount\Register.vue                               | Vue        |        529 |         23 |         26 |        578 |
+| e:\myWorkPlace\vue-element-app\src\views\UserAccount\ResetPassword.vue                          | Vue        |        203 |         12 |         17 |        232 |
+| e:\myWorkPlace\vue-element-app\src\views\index\index.vue                                        | Vue        |        101 |          7 |         23 |        131 |
+| Total                                                                                           |            |      7,840 |        433 |        724 |      8,997 |
++-------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+

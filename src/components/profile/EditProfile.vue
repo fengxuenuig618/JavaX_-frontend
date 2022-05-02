@@ -640,7 +640,8 @@ export default {
               message: "update success",
               type: "success",
             });
-            bus.emit('profileSet', { profileSet: true })
+            bus.emit('profileSet', { profileSet: true });
+            this.$bus.emit('refresh')
             _this.$router.push("/myProfile");
           } else {
             ElMessage({

@@ -316,7 +316,7 @@ export default {
           this.drawer = false;
           this.$router.push({ path: '/myCourses', query: { chapterId: this.currentChapter, globalLevel:this.globalLevel,
           tab:"tutorialTab",preQuiz:"true",afterQuiz:"true",navigation: this.$route.query.navigation} });
-
+          this.$bus.emit("refresh");
           
     },
     nextQuestion() {

@@ -163,7 +163,6 @@ export default {
         .post("/apis/userLogin", this.$qs.stringify(this.user))
         .then((res) => {
           console.log(res);
-
           if (res.data.code == 200) {
             // console.log(res.data.data.token);
             //_this.userToken = "Bearer " + res.data.data.token;

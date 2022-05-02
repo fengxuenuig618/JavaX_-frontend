@@ -10,10 +10,12 @@
         class="aside-menu"
         :collapse="isCollapse"
       >
-        <el-menu-item index="MenuTitle">
-          <el-icon :size="80"><icon-menu /></el-icon>
+        <el-menu-item index="MenuTitle" @click="toPage('/userGuidePage')">
+          
+          <!-- <el-icon :size="80"><icon-menu /></el-icon> -->
+          <span class="iconfont ">&#xe69a;</span>
           <template #title>
-            <span style="font-size: 25px">JavaX-beta </span>
+            <span style="font-size: 25px"> &nbsp; JavaX-beta </span>
           </template>
         </el-menu-item>
 
@@ -22,7 +24,7 @@
         <el-menu-item index="menuMyProfile" @click="toPage('/myProfile')">
  
           <el-icon><trend-charts /></el-icon>
-          <template #title>MY PROFILE</template>
+          <template #title>My Profile</template>
         </el-menu-item>
                 
 
@@ -35,9 +37,16 @@
           <template #title>Wrong Questions</template>
         </el-menu-item>
 
-        <el-menu-item index="aboutPage" @click="toPage('/aboutPage')">
-          <el-icon><setting /></el-icon>
-          <template #title >About</template>
+        <el-menu-item index="feedbackPage" @click="toPage('/feedbackPage')">
+          <!-- <el-icon><setting /></el-icon> -->
+          <el-icon><chat-dot-square /></el-icon>
+          <template #title >Feedback</template>
+        </el-menu-item>
+
+        <el-menu-item index="userGuidePage" @click="toPage('/userGuidePage')">
+          <!-- <el-icon><setting /></el-icon> -->
+          <el-icon><guide /></el-icon>
+          <template #title >User Guide</template>
         </el-menu-item>
         
 
@@ -54,10 +63,10 @@ import bus from 'vue3-eventbus';
 import MenuAllCourses from './AllCourses.vue';
 import MenuMyCourses from './MyCourses.vue';
 import {
-  Menu as IconMenu,
-  Setting,
   TrendCharts,
   DocumentDelete,
+  ChatDotSquare,
+  Guide
 } from "@element-plus/icons-vue";
 export default {
   name: "SideMenu",
@@ -68,12 +77,12 @@ export default {
         }
     },
     components:{
-    Setting,
-    IconMenu,
     TrendCharts,
     MenuAllCourses,
     MenuMyCourses,
     DocumentDelete,
+    ChatDotSquare,
+    Guide
     },
     methods: {
         toPage(page){
@@ -104,6 +113,13 @@ export default {
 }
 .aside-menu {
   height: 100%;
+}
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 30px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 </style>

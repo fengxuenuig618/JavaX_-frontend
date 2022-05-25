@@ -40,6 +40,7 @@ const routes = [
     component: () => import("../layouts/index.vue"),
     redirect:"/myProfile",
     children: [{ path: 'page1', name: 'Page1', component: () => import("../components/Page1.vue") },
+    { path: 'surveyPage', name: 'SurveyPage', component: () => import("../views/SurveyPage.vue") },
     { path: 'feedbackPage', name: 'FeedbackPage', component: () => import("../views/FeedbackPage.vue") },
     { path: 'userGuidePage', name: 'UserGuidePage', component: () => import("../views/UserGuide/index.vue") },
     { path: 'myProfile', name: 'MyProfile', component: () => import("../components/profile/MyProfile.vue") },

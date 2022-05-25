@@ -357,7 +357,7 @@ export default {
 
       let response = await  _this.$axios.get(url);
               if (response.data.msg == "no quiz") {
-          ElMessageBox.alert("No quiz yet.", "WOW", {
+          ElMessageBox.alert("You have completed all quizzes.", "WOW", {
             confirmButtonText: "OK",
           });
           this.$router.push("myProfile");

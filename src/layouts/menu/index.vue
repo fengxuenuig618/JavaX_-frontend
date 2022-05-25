@@ -37,6 +37,13 @@
           <template #title>Wrong Questions</template>
         </el-menu-item>
 
+        <el-menu-item index="surveyPage" @click="toPage('/surveyPage')">
+          <!-- <el-icon><setting /></el-icon> -->
+          <el-icon><EditPen /></el-icon>
+          <template #title >Survey</template>
+        </el-menu-item>
+
+
         <el-menu-item index="feedbackPage" @click="toPage('/feedbackPage')">
           <!-- <el-icon><setting /></el-icon> -->
           <el-icon><chat-dot-square /></el-icon>
@@ -66,7 +73,8 @@ import {
   TrendCharts,
   DocumentDelete,
   ChatDotSquare,
-  Guide
+  Guide,
+  EditPen
 } from "@element-plus/icons-vue";
 export default {
   name: "SideMenu",
@@ -82,7 +90,8 @@ export default {
     MenuMyCourses,
     DocumentDelete,
     ChatDotSquare,
-    Guide
+    Guide,
+    EditPen
     },
     methods: {
         toPage(page){

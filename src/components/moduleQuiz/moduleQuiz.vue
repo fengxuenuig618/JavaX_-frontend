@@ -359,10 +359,10 @@ export default {
 
       let response = await  _this.$axios.get(url);
               if (response.data.msg == "no quiz") {
-          // ElMessageBox.alert("No quiz yet.", "WOW", {
-          //   confirmButtonText: "OK",
-          // });
-          // this.$router.push("myProfile");
+          ElMessageBox.alert("You have completed all quizzes for this module.", "WOW", {
+            confirmButtonText: "OK",
+          });
+          this.$router.push("myProfile");
           console.log("none");
           }
           else{

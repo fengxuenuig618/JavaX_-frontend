@@ -116,7 +116,10 @@
 
               <el-dialog v-model="dialogVisible" title="Privacy and Terms" width="80%">
                 <span>
-                  
+
+               <b>Declaration:</b>   
+All tutorials and quizzes used on this website are from Oracle's official open source resources. <br>
+
 We publish the JavaX Terms of Service of Service so that you know what to expect as you use JavaX services. By choosing 'I agree' you agree to these terms.<br>
 And remember, JavaX ’s Privacy Policy describes how JavaX handles information generated as you use JavaX services.<br>
 It also includes information about why we process data, such as when we are pursuing legitimate interests while applying appropriate safeguards that protect your privacy. This means that we process your information for things like:<br>
